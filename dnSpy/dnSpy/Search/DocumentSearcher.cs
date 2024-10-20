@@ -73,6 +73,7 @@ namespace dnSpy.Search {
 				DotNetImageService = dotNetImageService,
 				Filter = options.Filter,
 				SearchComparer = options.SearchComparer,
+				SearchText = options.SearchText!,
 				OnMatch = r => AddSearchResult(r),
 				Context = searchResultContext,
 				CancellationToken = cancellationToken,

@@ -504,9 +504,13 @@ namespace dnSpy.Search {
 		bool CheckMatch(MethodDef method) {
 			if (IsMatch(method.Name, method))
 				return true;
-			if (IsMatch(FixTypeName(method.DeclaringType.FullName) + "." + method.Name.String, method) ||
-				IsMatch(FixTypeName(method.DeclaringType.FullName) + "::" + method.Name.String, method))
-				return true;
+			string fixTypeName = FixTypeName(method.DeclaringType.FullName);
+			if (!IsMatch(fixTypeName, method))
+			{
+				if (options.SearchText.Contains(".") && IsMatch(fixTypeName + "." + method.Name.String, method) ||
+					options.SearchText.Contains("::") && IsMatch(fixTypeName + "::" + method.Name.String, method))
+					return true;
+			}
 
 			if (method.ImplMap is ImplMap im) {
 				if (IsMatch(im.Name, im) || IsMatch(im.Module?.Name, null))
@@ -644,9 +648,13 @@ namespace dnSpy.Search {
 		bool CheckMatch(FieldDef field) {
 			if (IsMatch(field.Name, field))
 				return true;
-			if (IsMatch(FixTypeName(field.DeclaringType.FullName) + "." + field.Name.String, field) ||
-				IsMatch(FixTypeName(field.DeclaringType.FullName) + "::" + field.Name.String, field))
-				return true;
+			string fixTypeName = FixTypeName(field.DeclaringType.FullName);
+			if (!IsMatch(fixTypeName, field))
+			{
+				if (options.SearchText.Contains(".") && IsMatch(fixTypeName + "." + field.Name.String, field) ||
+					options.SearchText.Contains("::") && IsMatch(fixTypeName + "::" + field.Name.String, field))
+					return true;
+			}
 
 			if (field.ImplMap is ImplMap im) {
 				if (IsMatch(im.Name, im) || IsMatch(im.Module?.Name, null))
@@ -678,9 +686,13 @@ namespace dnSpy.Search {
 		bool CheckMatch(PropertyDef prop) {
 			if (IsMatch(prop.Name, prop))
 				return true;
-			if (IsMatch(FixTypeName(prop.DeclaringType.FullName) + "." + prop.Name.String, prop) ||
-				IsMatch(FixTypeName(prop.DeclaringType.FullName) + "::" + prop.Name.String, prop))
-				return true;
+			string fixTypeName = FixTypeName(prop.DeclaringType.FullName);
+			if (!IsMatch(fixTypeName, prop))
+			{
+				if (options.SearchText.Contains(".") && IsMatch(fixTypeName + "." + prop.Name.String, prop) ||
+					options.SearchText.Contains("::") && IsMatch(fixTypeName + "::" + prop.Name.String, prop))
+					return true;
+			}
 
 			return false;
 		}
@@ -707,9 +719,13 @@ namespace dnSpy.Search {
 		bool CheckMatch(EventDef evt) {
 			if (IsMatch(evt.Name, evt))
 				return true;
-			if (IsMatch(FixTypeName(evt.DeclaringType.FullName) + "." + evt.Name.String, evt) ||
-				IsMatch(FixTypeName(evt.DeclaringType.FullName) + "::" + evt.Name.String, evt))
-				return true;
+			string fixTypeName = FixTypeName(evt.DeclaringType.FullName);
+			if (!IsMatch(fixTypeName, evt))
+			{
+				if (options.SearchText.Contains(".") && IsMatch(fixTypeName + "." + evt.Name.String, evt) ||
+					options.SearchText.Contains("::") && IsMatch(fixTypeName + "::" + evt.Name.String, evt))
+					return true;
+			}
 
 			return false;
 		}

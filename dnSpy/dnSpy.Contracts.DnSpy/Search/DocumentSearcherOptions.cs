@@ -40,6 +40,11 @@ namespace dnSpy.Contracts.Search {
 		public ISearchComparer? SearchComparer { get; set; }
 
 		/// <summary>
+		/// Raw search text
+		/// </summary>
+		public string? SearchText { get; set; }
+
+		/// <summary>
 		/// Filter
 		/// </summary>
 		public IDocumentTreeNodeFilter? Filter { get; set; }
@@ -71,6 +76,7 @@ namespace dnSpy.Contracts.Search {
 		public DocumentSearcherOptions CopyTo(DocumentSearcherOptions other) {
 			other.MaxResults = MaxResults;
 			other.SearchComparer = SearchComparer;
+			other.SearchText = SearchText;
 			other.Filter = Filter;
 			other.SearchDecompiledData = SearchDecompiledData;
 			return other;

@@ -32,6 +32,7 @@ namespace dnSpy.Search {
 		public IDotNetImageService DotNetImageService { get; set; }
 		public IDocumentTreeNodeFilter Filter { get; set; }
 		public ISearchComparer SearchComparer { get; set; }
+        public string SearchText { get; set; }
 		public Action<SearchResult> OnMatch { get; set; }
 		public SearchResultContext Context { get; set; }
 		public CancellationToken CancellationToken { get; set; }

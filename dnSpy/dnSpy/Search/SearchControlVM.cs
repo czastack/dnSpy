@@ -190,6 +190,7 @@ namespace dnSpy.Search {
 			else {
 				var options = new DocumentSearcherOptions {
 					SearchComparer = CreateSearchComparer(),
+					SearchText = SearchText,
 					Filter = new FlagsDocumentTreeNodeFilter(selectedSearchTypeVM.Flags),
 					SearchDecompiledData = SearchSettings.SearchDecompiledData,
 				};
